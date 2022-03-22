@@ -9,13 +9,19 @@ part of 'card_info.dart';
 CardInfo _$CardInfoFromJson(Map<String, dynamic> json) => CardInfo(
       id: json['id'] as String,
       name: json['name'] as String,
-      oracle_id: json['oracle_id'] as String,
-      oracle_text: json['oracle_text'] as String?,
+      oracleId: json['oracle_id'] as String,
+      oracleText: json['oracle_text'] as String?,
+      scryfallUri: json['scryfall_uri'] as String,
+      imageLinks: json['image_uris'] == null
+          ? null
+          : ImageLinks.fromJson(json['image_uris'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CardInfoToJson(CardInfo instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'oracle_id': instance.oracle_id,
-      'oracle_text': instance.oracle_text,
+      'oracle_id': instance.oracleId,
+      'oracle_text': instance.oracleText,
+      'scryfall_uri': instance.scryfallUri,
+      'image_uris': instance.imageLinks?.toJson(),
     };

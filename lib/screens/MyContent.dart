@@ -72,6 +72,10 @@ class _MyContentState extends State<MyContent> {
       isUser = true;
     });
   }
+  // - 64/27 + 64/9 + 16/3 - 16
+  // = -64/27 + 192/27 + 144/27 - 16
+  // = 128/27 + 144/27  - 16
+  // = 272/27 - 16
 
   Future<void> getCardsFromDB() async {
     print('getting cards from db...');
@@ -81,6 +85,7 @@ class _MyContentState extends State<MyContent> {
     final List dataBaseList = await DatabaseLoader.readDataFromDBFile(
         DatabaseLoader.cardDatabasePath);
     cards = dataBaseList.map((e) => CardInfo.fromJson(e)).toList();
+    print(cards[0].imageLinks?.toJson());
     setState(() {
       isLoading = false;
       isUser = false;
@@ -146,7 +151,8 @@ class _MyContentState extends State<MyContent> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           title: Text('CardName: ${cards[index].name}'),
-                          subtitle: Text('CardId: ${cards[index].id}'),
+                          // subtitle: Text('CardId: ${cards[index].id}'),
+                          subtitle: Text('CardId: ${cards[index].oracleId}'),
                         );
                       }),
             ),
