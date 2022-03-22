@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:json_serialization_db_poc/models/image_links.dart';
 import 'package:json_serialization_db_poc/models/prices.dart';
+import 'package:json_serialization_db_poc/models/purchase_uris.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -28,6 +29,7 @@ class CardInfo {
     required this.prices,
     // required this.dateTime,
     // required this.links
+    required this.purchaseUris,
   });
   String id;
   String name;
@@ -35,10 +37,11 @@ class CardInfo {
   String? oracleText;
   String scryfallUri;
   ImageLinks? imageUris;
+
   // bool hasTwoSides; // Can I even add this here?
   Prices? prices;
   // DateTime dateTime; // how to add this here?
-  // Map<String, String> links; // todo
+  PurchaseUris? purchaseUris;
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
