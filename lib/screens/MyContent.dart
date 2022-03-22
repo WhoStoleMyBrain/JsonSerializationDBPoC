@@ -85,7 +85,7 @@ class _MyContentState extends State<MyContent> {
     final List dataBaseList = await DatabaseLoader.readDataFromDBFile(
         DatabaseLoader.cardDatabasePath);
     cards = dataBaseList.map((e) => CardInfo.fromJson(e)).toList();
-    print(cards[0].imageLinks?.toJson());
+    // print(cards[0].imageUris?.toJson());
     setState(() {
       isLoading = false;
       isUser = false;
@@ -153,6 +153,7 @@ class _MyContentState extends State<MyContent> {
                           title: Text('CardName: ${cards[index].name}'),
                           // subtitle: Text('CardId: ${cards[index].id}'),
                           subtitle: Text('CardId: ${cards[index].oracleId}'),
+                          leading: Text('\$${cards[index].prices?.usd}'),
                         );
                       }),
             ),

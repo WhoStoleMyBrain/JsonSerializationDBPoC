@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:json_serialization_db_poc/models/image_links.dart';
+import 'package:json_serialization_db_poc/models/prices.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -8,7 +9,12 @@ part 'card_info.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(
+    explicitToJson:
+        true, // makes subclasses usable in the toJson method. otherwise would get "Instance of..."
+    fieldRename:
+        FieldRename // renames the fields from the Json to lowerCamelCase variables
+            .snake)
 class CardInfo {
   //flutter pub run build_runner watch
   CardInfo({
@@ -17,26 +23,20 @@ class CardInfo {
     required this.oracleId,
     required this.oracleText,
     required this.scryfallUri,
-    required this.imageLinks,
-    // required this.text,
+    required this.imageUris,
     // required this.hasTwoSides,
-    // required this.price,
+    required this.prices,
     // required this.dateTime,
     // required this.links
   });
   String id;
   String name;
-  @JsonKey(name: 'oracle_id')
   String oracleId;
-  @JsonKey(name: 'oracle_text')
   String? oracleText;
-  @JsonKey(name: 'scryfall_uri')
   String scryfallUri;
-  @JsonKey(name: 'image_uris')
-  ImageLinks? imageLinks;
-  // String text; // what are you again?
+  ImageLinks? imageUris;
   // bool hasTwoSides; // Can I even add this here?
-  // Map<String, dynamic> price; // todo
+  Prices? prices;
   // DateTime dateTime; // how to add this here?
   // Map<String, String> links; // todo
 

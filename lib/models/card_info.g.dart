@@ -12,9 +12,12 @@ CardInfo _$CardInfoFromJson(Map<String, dynamic> json) => CardInfo(
       oracleId: json['oracle_id'] as String,
       oracleText: json['oracle_text'] as String?,
       scryfallUri: json['scryfall_uri'] as String,
-      imageLinks: json['image_uris'] == null
+      imageUris: json['image_uris'] == null
           ? null
           : ImageLinks.fromJson(json['image_uris'] as Map<String, dynamic>),
+      prices: json['prices'] == null
+          ? null
+          : Prices.fromJson(json['prices'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CardInfoToJson(CardInfo instance) => <String, dynamic>{
@@ -23,5 +26,6 @@ Map<String, dynamic> _$CardInfoToJson(CardInfo instance) => <String, dynamic>{
       'oracle_id': instance.oracleId,
       'oracle_text': instance.oracleText,
       'scryfall_uri': instance.scryfallUri,
-      'image_uris': instance.imageLinks?.toJson(),
+      'image_uris': instance.imageUris?.toJson(),
+      'prices': instance.prices?.toJson(),
     };
