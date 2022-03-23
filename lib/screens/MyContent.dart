@@ -108,6 +108,7 @@ class _MyContentState extends State<MyContent> {
       print(element?.toJson());
     });
     print(cards[index].hasTwoSides);
+    print(cards[index].dateTime);
   }
 
   @override

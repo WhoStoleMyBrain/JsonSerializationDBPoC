@@ -45,6 +45,20 @@ List<dynamic>? hasTwoSidesReadValue(Map<dynamic, dynamic>? json, String paramete
   return json?['card_faces'] == null ? [{'value': false}] : [{'value':true}];
 }
 
+//dateTime
+
+DateTime dateTimeFromJson(List<dynamic>? json) {
+  return DateTime.parse(json?[0]);
+}
+
+Map<String, dynamic> dateTimeToJson(DateTime instance) {
+  return {'dateTime': instance.toIso8601String()};
+}
+
+List<dynamic>? dateTimeReadValue(Map<dynamic, dynamic>? json, String parameterName) {
+  return [DateTime.now().toIso8601String()];
+}
+
 @JsonSerializable(
     explicitToJson:
         true, // makes subclasses usable in the toJson method. otherwise would get "Instance of..."
@@ -66,6 +80,7 @@ class CardInfo {
     // required this.dateTime,
     required this.purchaseUris,
     required this.hasTwoSides,
+    required this.dateTime,
   });
   String id;
   String? name;
@@ -83,10 +98,8 @@ class CardInfo {
   bool hasTwoSides; // Can I even add this here?
   @JsonKey(fromJson: cardFacesFromJson, toJson: cardFacesToJson)
   List<ImageLinks?>? cardFaces;
-
-
-
-  // DateTime dateTime; // how to add this here?
+  @JsonKey(name: '', readValue: dateTimeReadValue, fromJson: dateTimeFromJson, toJson: dateTimeToJson)
+  DateTime dateTime; // how to add this here?
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

@@ -25,6 +25,7 @@ CardInfo _$CardInfoFromJson(Map<String, dynamic> json) => CardInfo(
               json['purchase_uris'] as Map<String, dynamic>),
       hasTwoSides: hasTwoSidesFromJson(
           hasTwoSidesReadValue(json, 'hasTwoSides') as List?),
+      dateTime: dateTimeFromJson(dateTimeReadValue(json, '') as List?),
     );
 
 Map<String, dynamic> _$CardInfoToJson(CardInfo instance) => <String, dynamic>{
@@ -38,4 +39,5 @@ Map<String, dynamic> _$CardInfoToJson(CardInfo instance) => <String, dynamic>{
       'purchase_uris': instance.purchaseUris?.toJson(),
       'hasTwoSides': hasTwoSidesToJson(instance.hasTwoSides),
       'card_faces': cardFacesToJson(instance.cardFaces),
+      '': dateTimeToJson(instance.dateTime),
     };
