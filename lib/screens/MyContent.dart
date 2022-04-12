@@ -72,10 +72,6 @@ class _MyContentState extends State<MyContent> {
       isUser = true;
     });
   }
-  // - 64/27 + 64/9 + 16/3 - 16
-  // = -64/27 + 192/27 + 144/27 - 16
-  // = 128/27 + 144/27  - 16
-  // = 272/27 - 16
 
   Future<void> getCardsFromDB() async {
     print('getting cards from db...');
@@ -84,32 +80,24 @@ class _MyContentState extends State<MyContent> {
     });
     final List dataBaseList = await DatabaseLoader.readDataFromDBFile(
         DatabaseLoader.cardDatabasePath);
-    // cards = dataBaseList.map((e) => CardInfo.fromJson(e)).toList();
     cards = dataBaseList.map((e) {
-      // print(e);
-      // print(e?['card_faces']);
-      // print(e?['card_faces'].toString());
-      // print(e?['card_faces']?[0]?['image_uris']);
-      // e?.forEach((elem) {print(elem);});
       return CardInfo.fromJson(e);
     }).toList();
-    // cards.forEach((element) { });
-    // print(cards[0].imageUris?.toJson());
     setState(() {
       isLoading = false;
       isUser = false;
     });
   }
 
-  void _printCurrentlyRelevantData(int index) {
-    print(cards[index].imageUris?.toJson());
-
-    cards[index].cardFaces?.forEach((element) {
-      print(element?.toJson());
-    });
-    print(cards[index].hasTwoSides);
-    print(cards[index].dateTime);
-  }
+  // void _printCurrentlyRelevantData(int index) {
+  //   print(cards[index].imageUris?.toJson());
+  //
+  //   cards[index].cardFaces?.forEach((element) {
+  //     print(element?.toJson());
+  //   });
+  //   print(cards[index].hasTwoSides);
+  //   print(cards[index].dateTime);
+  // }
 
   @override
   void initState() {
@@ -174,7 +162,7 @@ class _MyContentState extends State<MyContent> {
                           subtitle: Text('CardId: ${cards[index].oracleId}'),
                           leading: Text('\$${cards[index].prices?.usd}'),
                           onTap: () {
-                            _printCurrentlyRelevantData(index);
+                            // _printCurrentlyRelevantData(index);
                           },
                         );
                       }),
